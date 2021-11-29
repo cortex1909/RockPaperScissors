@@ -1,9 +1,6 @@
 let randomStrings = ["rock", "paper", "scissors"];
-
+// computer picks random from array
 computerPlay = () => {
-  return randomStrings[Math.floor(Math.random() * randomStrings.length)];
-};
-playerPlay = () => {
   return randomStrings[Math.floor(Math.random() * randomStrings.length)];
 };
 
@@ -12,6 +9,7 @@ let computerScore = 0;
 let playerScore = 0;
 let gameRound = 1;
 
+//play one round
 playRound = (playerSelection, computerSelection) => {
   console.log(
     `Player picked: ${playerSelection} and PC picked: ${computerSelection}`
@@ -38,6 +36,7 @@ playRound = (playerSelection, computerSelection) => {
   }
 };
 
+// check whats the result
 checkResult = (gameRound) => {
   console.log(
     `Computer score: ${computerScore} and Player score: ${playerScore} and Gameround: ${gameRound}`
@@ -53,12 +52,10 @@ checkResult = (gameRound) => {
   }
 };
 
+//loop, while number of games is less than, play the game (playRound)
 for (gameRound = 1; gameRound < 6; gameRound++) {
   const playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
   const computerSelection = computerPlay();
   playRound(playerSelection, computerSelection);
   checkResult(gameRound);
 }
-
-console.log(playerScore);
-console.log(computerScore);
