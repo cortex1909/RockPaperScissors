@@ -1,20 +1,33 @@
-let randomStrings = ["rock", "paper", "scissors"];
-// computer picks random from array
-computerPlay = () => {
-  return randomStrings[Math.floor(Math.random() * randomStrings.length)];
-};
-
-let roundWinner = "";
+//default parameters
 let computerScore = 0;
 let playerScore = 0;
 let gameRound = 1;
+let result = document.getElementById("result")
+    result.innerHTML = `<span class="result"> ${playerScore} : ${computerScore} </span>`
+let winner = document.getElementById("winner")
+let buttons = document.querySelector(".buttons")
+
+// Event listener on buttons
+document.getElementById("rock").addEventListener("click", () => {
+  gameOn("rock");
+})
+document.getElementById("paper").addEventListener("click", () => {
+  gameOn("paper");
+})
+document.getElementById("scissors").addEventListener("click", () => {
+  gameOn("scissors");
+})   
+
+// computer picks random from array
+computerPlay = () => {
+  let randomStrings = ["rock", "paper", "scissors"];
+  return randomStrings[Math.floor(Math.random() * randomStrings.length)];
+};
 
 //play one round
 playRound = (playerSelection, computerSelection) => {
-  console.log(
-    `Player picked: ${playerSelection} and PC picked: ${computerSelection}`
-  );
-
+  winner.style.display = "block"
+  winner.innerHTML = `<span class="result"> Computer picked ${computerSelection}! </span>`
   if (playerSelection === computerSelection) {
     return "It is a tie!";
   } else if (
@@ -23,7 +36,6 @@ playRound = (playerSelection, computerSelection) => {
     (playerSelection == "scissors" && computerSelection == "paper")
   ) {
     playerScore++;
-    roundWinner = "player";
     return `Player wins, ${playerSelection} is better than ${computerSelection}!`;
   } else if (
     (computerSelection == "rock" && playerSelection == "scissors") ||
@@ -31,31 +43,35 @@ playRound = (playerSelection, computerSelection) => {
     (computerSelection == "scissors" && playerSelection == "paper")
   ) {
     computerScore++;
-    roundWinner = "computer";
     return `Computer wins, ${computerSelection} is better than ${playerSelection}!`;
   }
 };
 
 // check whats the result
-checkResult = (gameRound) => {
-  console.log(
-    `Computer score: ${computerScore} and Player score: ${playerScore} and Gameround: ${gameRound}`
-  );
-  if (gameRound == 5) {
-    if (computerScore == playerScore) {
-      console.log("Draw!");
-    } else if (computerScore > playerScore) {
-      console.log(`Computer won ${computerScore} by ${playerScore}`);
-    } else {
-      console.log(`Player won ${playerScore} by ${computerScore}`);
-    }
+checkResult = () => {
+  result.innerHTML = `<span class="result"> ${playerScore} : ${computerScore} </span>`
+  if (computerScore == 5) {
+    winner.style.display = "block"
+    buttons.style.display = "none"
+    winner.innerHTML = `<span class="result"> Computer won! </span>
+    <button onClick="setNewGame()" class="btn restart">Restart</button>`
+  } else if(playerScore == 5) {
+    winner.style.display = "block"
+    buttons.style.display = "none"
+    winner.innerHTML = `<span class="result"> Player won! </span>
+    <button onClick="setNewGame()" class="btn restart">Restart</button>`
   }
 };
 
-//loop, while number of games is less than, play the game (playRound)
-for (gameRound = 1; gameRound < 6; gameRound++) {
-  const playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
-  const computerSelection = computerPlay();
-  playRound(playerSelection, computerSelection);
-  checkResult(gameRound);
+gameOn = (playerSelection) => {
+  playRound(playerSelection, computerPlay())
+  checkResult()
+}
+
+setNewGame = () => {
+  computerScore = 0
+  playerScore = 0
+  result.innerHTML = `<span class="result"> ${playerScore} : ${computerScore} </span>`
+  winner.style.display = "hidden"
+  buttons.style.display = "flex"
 }

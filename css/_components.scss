@@ -1,0 +1,48 @@
+.btn {
+  background: none;
+  width: 100px;
+  height: 100px;
+  color: rgb(39, 37, 37);
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #fff;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+    transform: rotateZ(360deg);
+    transition: 1s ease;
+  }
+  &.rock {
+    background-image: url(../img/rock.png);
+    background-size: contain;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+  &.paper {
+    background-image: url(../img/paper.png);
+    background-size: contain;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+  &.scissors {
+    background-image: url(../img/scissors.png);
+    background-size: contain;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+  &.restart {
+    display: block;
+    margin: 0 auto;
+    margin-top: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 50px;
+    color: #fff;
+    
+  }
+}
+
+.result {
+  font-size: 3rem;
+  color: $resulttext;
+  text-shadow: 2px 2px #000;
+}

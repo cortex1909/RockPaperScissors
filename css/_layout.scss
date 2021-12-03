@@ -1,0 +1,37 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 auto;
+  width: 800px;
+}
+
+#container {
+  padding: 10rem 0;
+  row-gap: 2rem;
+  background-color: $darkbgc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .results {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .player img {
+      height: 150px;
+    }
+    .computer img {
+      height: 150px;
+    }
+  }
+}
