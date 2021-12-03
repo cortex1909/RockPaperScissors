@@ -1,5 +1,5 @@
 # RockPaperScissors
 
-TheOdinProject game
+**TheOdinProject** game
 
-Used in project: Git, HTML, CSS (SCSS), JavaScript
+**Used in project:** Git, HTML, CSS (SCSS), JavaScript
